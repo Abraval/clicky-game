@@ -1,0 +1,16 @@
+.card {
+  height: 190px;
+  width: 190px;
+}
+.card > .img-container {
+  height: 100%;
+  width: 100%;
+}
+.card > .img-container > img {
+  width: 85%;
+}
+
+.card:hover {
+  transform: translateY(5px);
+  cursor: pointer;
+}

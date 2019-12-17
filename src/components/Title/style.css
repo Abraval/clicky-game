@@ -1,0 +1,40 @@
+.titleMain{
+  margin: 10px 0 0 0;
+}
+.title {
+  width: 100%;
+  font-family: 'Titan One', cursive;
+  text-align: center;
+  text-shadow: 2px 2px #1e0820;
+  font-size: 3rem;
+  color: rgb(218, 85, 185);
+  margin-bottom: 20px;
+}
+
+.rules {
+  width: 100%;
+  font-family: 'Titan One', cursive;
+  text-align: center;
+  font-size: 1.5rem;
+  text-shadow: 1px #1e0820;
+  color: rgb(42, 99, 174);
+  margin-bottom: 5px;
+}
+.scores {
+  width: 100%;
+  font-family: 'Sniglet', cursive;
+  text-align: center;
+  font-size: 2rem;
+  color: rgb(174, 42, 141);
+  text-shadow: 1px 1px #1e0820;
+  margin-bottom: 40px;
+}
+.title:hover {
+  transform: translateY(5px);
+  color: rgb(174, 42, 141);
+  text-shadow: 2px 2px #1e0820;
+  cursor: pointer;
+}
+a:hover{
+  text-decoration: none;
+}

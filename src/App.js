@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import FriendCard from "./components/FriendCard";
+import "./App.css";
 import Wrapper from "./components/Wrapper";
 import Title from "./components/Title";
 import friends from "./friends.json";
@@ -7,27 +8,68 @@ import friends from "./friends.json";
 class App extends Component {
   // Setting this.state.friends to the friends json array
   state = {
+    message: "",
     friends: friends,
-    count: 0
+    score: 0,
+    unselectedFriends: friends
   };
 
-  handleclick = id => {
-    // Filter this.state.friends for friends with an id not equal to the id being removed
-    this.setState({ count: this.state.count + 1 });
+  shuffleArray = array => {
+    for (let i = array.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  };
+  selectFriend = name => {
+    const findFriend = this.state.unselectedFriends.find(
+      item => item.name === name
+    );
+
+    if (findFriend === undefined) {
+      // failure to select a new dog
+      this.setState({
+        message: "You lost!",
+        score: 0,
+        friends: friends,
+        unselectedFriends: friends
+      });
+
+    } else {
+      // success to select a new dog
+      const newFriends = this.state.unselectedFriends.filter(
+        item => item.name !== name
+      );
+
+      this.setState({
+        message: "You guessed right!",
+        score: this.state.score + 1,
+        friends: friends,
+        unselectedFriends: newFriends
+      });
+    }
+    if(this.state.score >= 12) {
+      this.setState({
+        message: "You won!",
+        score: 0,
+        friends: friends,
+        unselectedFriends: friends
+      });
+
+    }
+
+    this.shuffleArray(friends);
   };
 
-  // Map over this.state.friends and render a FriendCard component for each friend object
   render() {
     return (
       <Wrapper>
-        <Title score={this.state.count} />
+        <Title score={this.state.score} message={this.state.message} />
         {this.state.friends.map(friend => (
           <FriendCard
-            id={friend.id}
-            key={friend.id}
             name={friend.name}
             image={friend.image}
-            handleclick={this.handleclick}
+            selectFriend={this.selectFriend}
+            score={this.state.score}
           />
         ))}
       </Wrapper>

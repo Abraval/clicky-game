@@ -47,7 +47,7 @@ class App extends Component {
         unselectedFriends: newFriends
       });
     }
-    if(this.state.score >= 12) {
+    if(this.state.score >= 11) {
       this.setState({
         message: "You won!",
         score: 0,
